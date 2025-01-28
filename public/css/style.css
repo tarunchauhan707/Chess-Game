@@ -1,0 +1,63 @@
+
+.chessboard {
+    display: grid;
+    grid-template-columns: repeat(8, minmax(0, 1fr));
+    grid-template-rows: repeat(8, minmax(0, 1fr));
+    width: 400px;
+    height: 400px;
+    transform: rotate(0deg);
+    perspective: 800px;
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.5); /* Adds a shadow around the board */
+    border: 0px solid #333; /* Enhances board outline */
+    border-radius: 2px;
+    overflow: hidden;
+}
+
+.piece.white {
+    color: white;
+    filter: drop-shadow(0 0 2px rgba(0, 0, 0, 1));
+}
+
+.piece.black {
+    color: black;
+}
+
+.flipped {
+    transform: rotate(180deg);
+}
+
+.square {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.square.light {
+    background-color: #FCE7C8;
+}
+
+.square.dark {
+    background-color: #D2665A;
+}
+
+.piece {
+    font-size: 36px;
+    cursor: pointer;
+}
+
+.piece.draggable {
+    cursor: grab;
+}
+
+.dragging {
+    opacity: 0.5;
+}
+
+/* Rotate pieces for black player */
+.flipped .piece {
+    transform: rotate(180deg);
+}
+
+.bg-custom {
+    background-color: #FFDDCC;
+  }

@@ -10,7 +10,7 @@ const io=socket(http);
 
 const chess=new Chess();
 let players={};
-let currPlayer="white";
+let currPlayer="w";
 
 app.set("view engine","ejs");
 app.use(express.static(path.join(__dirname,"public")));
@@ -25,14 +25,14 @@ io.on("connection",function(uniquesocket){
     
     if(!players.white){
         players.white=uniquesocket.id;
-        uniquesocket.emit("playerRole","white");
+        uniquesocket.emit("playerRole","w");
     }
     else if(!players.black){
         players.black=uniquesocket.id;
-        uniquesocket.emit("playerRole","black");
+        uniquesocket.emit("playerRole","b");
     }
     else{
-        uniquesocket.emit("playerRole","spectator");
+        uniquesocket.emit("playerRole","spectatorRole");
     }
 
     uniquesocket.on("disconnect",function(){
@@ -45,20 +45,20 @@ io.on("connection",function(uniquesocket){
         }
     });
 
-    uniquesocket.on("move",function(data){
+    uniquesocket.on("move",function(move){
         try{
             if(chess.turn()==="white" && players.white!==uniquesocket.id) return;   
             if(chess.turn()==="black" && players.black!==uniquesocket.id) return;
             
-            const result=chess.move(data);
+            const result=chess.move(move);
             if(result){
                 currPlayer=chess.turn();
-                io.emit("move",data);
-                io.emit("chessboardstate",chess.fen());       
+                io.emit("move",move);
+                io.emit("boardState",chess.fen());       
             }
             else{
-                console.log("invalid move : "+data);
-                uniquesocket.emit("invalidMove",data);
+                console.log("invalid move : "+move);
+                uniquesocket.emit("invalidMove",move);
             }
         } 
         catch(e){
