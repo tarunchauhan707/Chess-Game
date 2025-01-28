@@ -1,0 +1,21 @@
+{
+  "name": "chess-app",
+  "version": "1.0.0",
+  "description": "chess-app",
+  "main": "index.js",
+  "scripts": {
+    "start": "node app.js",
+    "dev": "nodemon app.js",
+    "test": "jest"
+  },
+  "author": "TARUN",
+  "license": "ISC",
+  "dependencies": {
+    "chess.js": "^1.0.0",
+    "ejs": "^3.1.10",
+    "express": "^4.21.2",
+    "http": "^0.0.1-security",
+    "nodemon": "^3.1.9",
+    "socket.io": "^4.8.1"
+  }
+}
