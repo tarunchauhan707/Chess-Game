@@ -19,7 +19,6 @@ Welcome to the Chess-Game! This repository contains a multiplayer chess game imp
 - Move validation using Chess.js
 - Interactive and responsive UI with Bootstrap
 - Real-time communication using Socket.io
-- Customizable board themes
 - Easy-to-read and maintain codebase
 
 ## Technologies Used
